@@ -1,0 +1,99 @@
+# units are MPa, mm, ms, grams, or
+# units are MPa, micron, microsec, nanograms, or
+def lam 25961.54
+def mu 17307.7
+def grun 1.6
+def temp0 293.0
+def tempmelt 903.0
+def rho0 1.738e-3
+def qbastw 0
+def qbassl 0
+def qtwbas 0
+def qtwsl 0
+def qslbas 0
+def qsltw 0
+def hbastype 2
+def hbas1 1.75
+def hbas2 0.7
+def hbas3 7100.0
+def hbas4 0.0
+def hbas5 0.0
+def hbas6 0.0
+def htwtype 3
+def htw1 2.0
+def htw2 1.7
+def htw3 4.0
+def htw4 0.128917
+def htw5 0.95
+def htw6 0.0
+def hsltype 2
+def hsl1 3.5
+def hsl2 330.0
+def hsl3 0.5
+def hsl4 0.05
+def hsl5 50000.0
+def hsl6 90.0
+def hsl7 0.0
+def hsl8 1.0e-8
+def eosflag 2
+def b0 35400.0
+def dbdp 3.9
+def cv 1.78
+# ************* end Mat const def ***************
+  matinput rho {rho0} e0 {temp0*cv} v0 1.0 t0 {temp0} cvav {cv}
+  msinput
+    ysmodel 180
+      shear_mod {mu}
+      bulk_mod  {lam+2.0*mu/3.0}
+      num_constants 39
+      num_depvars 25
+      umat_number 1
+      constants
+        {lam}
+        {mu}
+        {grun}
+        {temp0}
+        {tempmelt}
+        {rho0}
+        {qbastw}
+        {qbassl}
+        {qtwbas}
+        {qtwsl}
+        {qslbas}
+        {qsltw}
+        {hbastype}
+        {hbas1}
+        {hbas2}
+        {hbas3}
+        {hbas4}
+        {hbas5}
+        {hbas6}
+        {htwtype}
+        {htw1}
+        {htw2}
+        {htw3}
+        {htw4}
+        {htw5}
+        {htw6}
+        {hsltype}
+        {hsl1}
+        {hsl2}
+        {hsl3}
+        {hsl4}
+        {hsl5}
+        {hsl6}
+        {hsl7}
+        {hsl8}
+        {eosflag}
+        {b0}
+        {dbdp}
+        {cv}
+      library /home/jlloyd/Desktop/mgumat/ale3d/LloydUmat.so
+      umat_function my_abaqus_umat_1 #this is the actual umat subroutine name
+      # umat_register_function PTR_umat_register
+      # umat_varname_function PTR_umat_getStateVarNameArray
+      # umat_initial_value_function PTR_umat_getInitialValuesNoProps
+elasmodel 99
+hardmodel 299
+eosmodel 399
+failmodel 499
